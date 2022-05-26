@@ -103,4 +103,19 @@ app.get('/statement/date', verifyIsExistsAccountCPF, (req, res) => {
     return res.status(200).json(statement)
 })
 
+app.put('/account', verifyIsExistsAccountCPF, (req, res) => {
+    const { name } = req.body
+    const { customer } = req
+
+    customer.name = name
+
+    return res.status(201).send()
+})
+
+app.get('/account', verifyIsExistsAccountCPF, (req, res) => {
+    const { customer } = req
+
+    return res.status(200).json(customer)
+})
+
 app.listen(3000)
